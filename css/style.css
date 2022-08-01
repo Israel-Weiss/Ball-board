@@ -1,0 +1,45 @@
+*{
+    text-align: center;
+    margin: auto;
+}
+
+body {background-color: rgb(3, 12, 73); color:white}
+
+.cell {width:40px; height:40px;text-align: center}
+.cell img {width:25px; height:auto}
+.floor {background-color: rgb(208, 166, 166)}
+.wall {background-color: rgb(103, 37, 37)}
+
+p {
+    font-size: 22px;
+    color: rgb(24, 24, 68);
+    background-color: rgb(234, 156, 156);
+    max-width: 130px;
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+button{
+    font-size: larger;
+    margin: 18px;
+    background-color: aquamarine;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.win {
+    margin: auto;
+    margin-top: 10px;
+    max-width: 360px;
+    text-align: center;
+    font-size: 40px;
+    background-color: rgb(9, 241, 28);
+    color: rgb(5, 34, 121);
+    border: 2px solid black;
+}
+
+
+
