@@ -22,6 +22,7 @@ var gGlueCount
 var elWin = document.querySelector('.win')
 
 function initGame() {
+	playSoundStart()
 	gGamerPos = { i: 2, j: 9 }
 	gBoard = buildBoard()
 	renderBoard(gBoard)
@@ -34,7 +35,7 @@ function initGame() {
 	if (gAddBallId) clearInterval(gAddBallId)
 	gAddBallId = setInterval(() => {
 		addBall(gBoard)
-	}, 1500)
+	}, 1300)
 
 	if (gAddGlueId) clearInterval(gAddGlueId)
 	if (gClearGlueId) clearTimeout(gClearGlueId)
@@ -160,6 +161,7 @@ function moveTo(i, j) {
 }
 
 function step(newLOcation, img) {
+	playSoundStep()
 	gBoard[gGamerPos.i][gGamerPos.j].gameElement = null
 	renderCell(gGamerPos, '')
 
@@ -172,11 +174,12 @@ function step(newLOcation, img) {
 function ballEat() {
 	gBallCount--
 	renderBallCount()
-	playSound()
+	playSoundBall()
 	if (gBallCount === 0) gameOver()
 }
 
 function glueStuck(location) {
+	playSoundStuck()
 	clearTimeout(gClearGlueId)
 	gameOn = false
 	setTimeout(() => {
@@ -187,6 +190,7 @@ function glueStuck(location) {
 }
 
 function release(location) {
+	playSoundRelease()
 	gBoard[location.i][location.j].gameElement = GAMER
 	renderCell(gGamerPos, GAMER_IMG)
 	gameOn = true
@@ -205,6 +209,7 @@ function renderBallCount() {
 }
 
 function gameOver() {
+	playSoundWin()
 	clearInterval(gAddBallId)
 	clearInterval(gAddGlueId)
 	if (gClearGlueId) clearTimeout(gClearGlueId)
@@ -212,10 +217,37 @@ function gameOver() {
 	gameOn = false
 }
 
-function playSound() {
-    var sound = new Audio("audio/poyon.mp3")
+function playSoundBall() {
+    var sound = new Audio("audio/glocken.mp3")
     sound.play()
 }
+
+function playSoundWin() {
+    var sound = new Audio("audio/applause.mp3")
+    sound.play()
+}
+
+function playSoundStart() {
+    var sound = new Audio("audio/start.mp3")
+    sound.play()
+}
+
+function playSoundStuck() {
+    var sound = new Audio("audio/fall.mp3")
+    sound.play()
+}
+
+function playSoundRelease() {
+    var sound = new Audio("audio/pikopiko.mp3")
+    sound.play()
+}
+
+function playSoundStep() {
+    var sound = new Audio("audio/pi_low.mp3")
+    sound.play()
+}
+
+
 
 
 
